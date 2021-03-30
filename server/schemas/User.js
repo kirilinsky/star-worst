@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const crypto = require('crypto');
+ 
 
 const UserSchema = new Schema({
     name: String,
@@ -9,7 +10,7 @@ const UserSchema = new Schema({
     storage: Array
 
 
-})
+}, {timestamps : true})
 
 UserSchema.methods.setPassword = function (password) {
 
@@ -23,7 +24,7 @@ UserSchema.methods.setPassword = function (password) {
 
 UserSchema.methods.validPassword = function (password) {
     var hash = crypto.pbkdf2Sync(password,
-        this.salt, 1000, 64, `sha512`).toString(`hex`);
+        this.salt, 800, 64, `sha512`).toString(`hex`);
     return this.hash === hash;
 };
 
