@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 50px;
+  background: var(--layout-color);
+  padding: 20px 0;
+
+  &__logo {
+    font-size: 25px;
+    cursor: pointer;
+    transition: linear 0.4s;
+    @media(min-width: 991px) {
+      &:hover {
+        color: rgb(26, 92, 255);
+      }
+    }
+  }
+
+  &-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 300px;
+  }
+}

@@ -2,7 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import SignUp from '../views/SignUp.vue'
-import Test from '../views/Test.vue'
 import Profile from '../views/Profile.vue'
 import guest from './midleware/guest'
 import auth from './midleware/auth'
@@ -15,12 +14,6 @@ const routes = [
     path: '/',
     name: 'home',
     component: Home,
-
-  },
-  {
-    path: '/test',
-    name: 'test',
-    component: Test,
 
   },
   {
@@ -50,7 +43,6 @@ router.beforeEach((to, from, next) => {
   if (!to.meta.middleware) {
     return next()
   }
-  console.log('here');
   const middleware = to.meta.middleware
   const context = {
     to, from, next, store
