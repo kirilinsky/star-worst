@@ -1,19 +1,21 @@
 <template>
   <div>
     <h1 class="title">Ты еще не снами? Пфф, странный ты тип!</h1>
-    <form class="form login__form" @submit.prevent="setNewUser">
+    <form class="form login-form" @submit.prevent="redirect">
       <vs-input border placeholder="Имя" v-model="name" />
       <vs-input color="#eeff21" border type="email" placeholder="Почта" v-model="email" />
       <vs-input color="#7d33ff" border type="password" placeholder="Пароль" v-model="pass" />
 
-      <vs-button 
-        class="button login__button" 
-        transparent 
-        :active="active == 0" 
-      >
-        Зарегистрироваться
-      </vs-button>
-    
+      <div class="login-form__buttons">
+        <vs-button 
+          class="button login__button" 
+          transparent 
+          :active="active == 0" 
+        >
+          Зарегистрироваться
+        </vs-button>
+        <span class="login-form__account" @click="goToSignUp">У меня уже есть аккаунт</span>
+      </div>
     </form>
   </div>
 </template>
@@ -30,15 +32,22 @@ export default {
     pass: ''
   }),
   computed: {
-    ...mapGetters({
-      active: 'getActive' 
-    })
+    ...mapGetters({ active: 'getActive' })
   },
-  methods:{
-    ...mapActions({ loginAction: 'loginAction' }),
+  methods: {
+    ...mapActions({ loginAction: 'loginAction', registered: 'setRegistered' }),
     redirect() {
       this.loginAction();
       this.$router.push('/profile')
+    },
+    openNotification(position = null, color, title, text) {
+      const noti = this.$vs.notification({
+        progress: 'auto',
+        color,
+        position,
+        title,
+        text
+      })
     },
     setNewUser() {
       const userData = {
@@ -47,11 +56,17 @@ export default {
         password: this.pass
       }
 
-      tryToSignIn(userData).then(response => console.log(response.data))
+      tryToSignIn(userData).then(response => {
+        if (response.data.success) {
+          this.openNotification('bottom-right', 'rgb(70, 201, 58)', 'Регистрация завершена!', 'Заходи уже, чмо!')
+        }
+      }).catch(err => {
+        this.openNotification('bottom-right', 'rgb(255, 71, 87)', 'Ошибка регистрации!', 'Хотел ник украсть, гнида?')
+      })
+    },
+    goToSignUp() {
+      this.registered()
     }
-  },
-  created() {
-    
   }
 }
 </script>

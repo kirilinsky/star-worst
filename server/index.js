@@ -12,8 +12,8 @@ const envPASS = process.env.PASS || 's'
 const app = express();
 
 var corsOptions = {
-    origin: '*', 
-    
+    origin: '*',
+
 }
 app.use(express.json())
 app.use(cors(corsOptions));
