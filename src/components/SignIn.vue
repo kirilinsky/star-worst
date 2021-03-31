@@ -58,10 +58,10 @@ export default {
 
       tryToSignIn(userData).then(response => {
         if (response.data.success) {
-          this.openNotification('bottom-right', 'rgb(70, 201, 58)', 'Регистрация завершена!', 'Заходи уже, чмо!')
+          this.openNotification('bottom-right', 'rgb(70, 201, 58)', 'Регистрация завершена!', 'Заходи скорее, тебя не хватает!')
         }
       }).catch(err => {
-        this.openNotification('bottom-right', 'rgb(255, 71, 87)', 'Ошибка регистрации!', 'Хотел ник украсть, гнида?')
+        this.openNotification('bottom-right', 'rgb(255, 71, 87)', 'Ошибка регистрации!', 'Ну и дела... Перепроверь все и давай снова!')
       })
     },
     goToSignUp() {
