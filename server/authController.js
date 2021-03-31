@@ -36,7 +36,7 @@ class authController {
             const userRole = await Role.findOne({ value: 'USER' })
             const user = new User({ email, name, password: hashPass, roles: [userRole.value] })
             await user.save()
-            return res.json({ message: 'success' })
+            return res.json({ success: true })
         }
         catch (e) {
             console.log(e);
@@ -55,7 +55,7 @@ class authController {
                 return res.status(400).json({ message: 'incorrect password' })
             }
             const token = generateAccessToken(user._id, user.roles, user.name)
-            return res.json({ token, session:true })
+            return res.json({ token, session: true })
         }
         catch (e) {
             console.log(e);

@@ -12,11 +12,11 @@ const envPASS = process.env.PASS || 's'
 const app = express();
 
 var corsOptions = {
-    origin: '*',
-    optionsSuccessStatus: 200 //204 
+    origin: '*', 
+    
 }
 app.use(express.json())
-/* app.use(cors(corsOptions)); */
+app.use(cors(corsOptions));
 app.use('/auth', authRouter);
 
 const dbRoute = `mongodb+srv://admin:${envPASS}@cluster0.dfx9g.mongodb.net/sworst?retryWrites=true&w=majority`
