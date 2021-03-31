@@ -1,12 +1,16 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
 import Home from '../views/Home.vue'
-import SignUp from '../views/SignUp.vue'
+import Login from '../views/Login.vue'
 import Profile from '../views/Profile.vue'
+
 import guest from './midleware/guest'
 import auth from './midleware/auth'
 import middlewarePipeline from './middlewarePipeline'
+
 import store from '../store'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -17,9 +21,9 @@ const routes = [
 
   },
   {
-    path: '/signup',
-    name: 'signup',
-    component: SignUp,
+    path: '/login',
+    name: 'login',
+    component: Login,
     meta: {
       middleware: [guest]
     }
