@@ -34,7 +34,7 @@ const start = async () => {
         db.once('open', () => log(chalk.green('connected to the database')));
         db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-        app.listen(PORT, () => { log(chalk.white.bgGreen(`SERVER IS LISTENING ON PORT ${PORT} \n --get ready for queries--`)) });
+        app.listen(PORT, () => { log(chalk.bgBlue(`SERVER IS LISTENING ON PORT ${PORT} \n --get ready for queries--`)) });
     } catch (e) {
         console.log(chalk.red(e));
     }

@@ -8,6 +8,10 @@ import './assets/scss/style.scss'
 
 import 'vuesax/dist/vuesax.css' //Vuesax styles
 
+import axios from 'axios'
+
+window.axios = axios
+
 Vue.use(Vuesax)
 
 Vue.config.productionTip = false
