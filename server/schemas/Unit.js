@@ -1,13 +1,14 @@
 const { Schema, model } = require('mongoose')
 
 
-const Unit  = new Schema({
+const Unit = new Schema({
     name: String,
     damage: Number,
     price: Number,
     img: String,
-    health: Number
-
+    health: Number,
+    soldCount: Number,
+    description: String
 
 }, { timestamps: true })
 

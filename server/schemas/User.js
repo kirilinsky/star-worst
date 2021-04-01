@@ -18,7 +18,8 @@ const User = new Schema({
     }],
     achieves: { type: Array, default: [] },
     storage: { type: Array, default: [] },
-
+    bitcoin: { type: Number, default: 0 },
+    capital: { type: Number, default: 0 }
 }, { timestamps: true })
 
 
