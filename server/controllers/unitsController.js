@@ -33,15 +33,15 @@ class unitsController {
             const rest = bitcoin - price
             const newStorage = [...storage, { id: unitId, perks: [], damageMultiplier: 0, healthMultiplier: 0 }]
             console.log(rest, bitcoin);
-            User.findByIdAndUpdate({ _id: userId }, { bitcoin: rest, storage: newStorage }, { new: true }/* , (err, model) => {
+            User.findByIdAndUpdate({ _id: userId }, { bitcoin: rest, storage: newStorage }, { new: true }, (err, model) => {
                 if (err) {
-                    console.log(err);
+                    return res.status(400).json({ message: 'buy units error ' })
                 }
-                console.log(model);
-            } */)
+                return res.json({ message: `Ура, купили. Остаток баланса:${rest}.btc` })
+            })
 
 
-            return res.json({ message: `Ура, купили. Остаток баланса:${rest}.btc` })
+
         } catch (e) {
             return res.status(400).json({ message: 'buy units error ' })
         }
