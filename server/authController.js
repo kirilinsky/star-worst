@@ -62,10 +62,11 @@ class authController {
             return res.status(400).json({ message: 'login error' })
         }
     }
-    async getUsers(req, res) {
+    async getUser(req, res) {
         try {
-            const users = await User.find()
-            return res.json(users)
+            const currentUser = req.user
+            const user = await User.findOne({ _id: currentUser.id })
+            return res.json(user)
         }
         catch (e) {
             return res.status(400).json({ message: 'get users error ' })

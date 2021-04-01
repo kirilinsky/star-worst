@@ -1,46 +1,85 @@
 <template>
   <div>
     <h1 class="title">Привет боец, давай уже заходи!</h1>
-    <form class="form login-form">
+    <form class="form login-form" @submit.prevent="login">
       <vs-input border placeholder="Почта" v-model="email" />
-      <vs-input color="#7d33ff" border type="password" placeholder="Пароль" v-model="pass" />
+      <vs-input
+        color="#7d33ff"
+        border
+        type="password"
+        placeholder="Пароль"
+        v-model="pass"
+      />
 
       <div class="login-form__buttons">
         <vs-button
           class="button login__button"
           transparent
           :active="active == 0"
-          @click="redirect"
         >
           Войти
         </vs-button>
-        <span class="login-form__account" @click="goToSignIn">У меня нет аккаунта</span>
+        <span class="login-form__account" @click="goToSignIn"
+          >У меня нет аккаунта</span
+        >
       </div>
-
     </form>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
-
+import { mapGetters, mapActions } from "vuex";
+import { tryToLogIn } from "@/services/api/connections";
 export default {
   data: () => ({
-    email: '',
-    pass: ''
+    email: "",
+    pass: "",
   }),
   computed: {
-    ...mapGetters({ active: 'getActive' })
+    ...mapGetters({ active: "getActive" }),
   },
-  methods:{
-    ...mapActions({ loginAction: 'loginAction', registered: 'setRegistered' }),
+  methods: {
+    ...mapActions({ loginAction: "loginAction", registered: "setRegistered" }),
     redirect() {
       this.loginAction();
-      this.$router.push('/profile')
+      this.$router.push("/profile");
     },
     goToSignIn() {
-      this.registered()
-    }
-  }
-}
+      this.registered();
+    },
+    login() {
+      tryToLogIn({ email: this.email, password: this.pass })
+        .then((res) => {
+          if (res.data.token) {
+            this.openNotification(
+              "bottom-right",
+              "rgb(222, 212, 21)",
+              "ok  !",
+              "yjhvccf!"
+            );
+            window.localStorage.setItem("token", res.data.token);
+            this.loginAction();
+            this.$router.push("/profile");
+          }
+        })
+        .catch((e) => {
+          this.openNotification(
+            "bottom-right",
+            "rgb(255, 71, 87)",
+            "Ошибка  !",
+            e.response.data.message
+          );
+        });
+    },
+    openNotification(position = null, color, title, text) {
+      const noti = this.$vs.notification({
+        progress: "auto",
+        color,
+        position,
+        title,
+        text,
+      });
+    },
+  },
+};
 </script>

@@ -2,5 +2,15 @@ import { api } from './base'
 
 export function tryToSignIn(data) {
   return api()
-    .post("auth/signup", data)
+    .post("api/signup", data)
+}
+
+export function tryToLogIn(data) {
+  return api()
+    .post("api/login", data)
+}
+
+export function getUserInfo() {
+  return api()
+    .get("api/user", data)
 }

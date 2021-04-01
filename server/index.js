@@ -17,7 +17,7 @@ var corsOptions = {
 }
 app.use(express.json())
 app.use(cors(corsOptions));
-app.use('/auth', authRouter);
+app.use('/api', authRouter);
 
 const dbRoute = `mongodb+srv://admin:${envPASS}@cluster0.dfx9g.mongodb.net/sworst?retryWrites=true&w=majority`
 mongoose.set('useUnifiedTopology', true)
