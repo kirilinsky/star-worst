@@ -32,7 +32,7 @@ class unitsController {
 
             const rest = bitcoin - price
             const newStorage = [...storage, { id: unitId, perks: [], damageMultiplier: 0, healthMultiplier: 0 }]
-            console.log(rest, bitcoin);
+            
             User.findByIdAndUpdate({ _id: userId }, { bitcoin: rest, storage: newStorage }, { new: true }, (err, model) => {
                 if (err) {
                     return res.status(400).json({ message: 'buy units error ' })
