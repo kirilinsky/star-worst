@@ -1,9 +1,7 @@
 <template>
   <div class="market">
 
-    <div class="unit" v-for="unit in units" :key="unit._id">
-      <p>{{unit.name}}</p>
-    </div>
+    <Card :units="units"/>
 
   </div>
 </template>
@@ -11,8 +9,10 @@
 <script>
 import { mapGetters } from 'vuex'
 
+import Card from '@/components/Card'
 
 export default {
+  components: { Card },
   computed: {
     ...mapGetters({ units: 'getUnits' })
   },

@@ -23,7 +23,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters({ login: "getUserLogged", active: "getActive" }),
+    ...mapGetters({ login: "getUserLogged" }),
   },
 };
 </script>
