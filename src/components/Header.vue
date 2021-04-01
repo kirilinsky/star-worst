@@ -3,6 +3,7 @@
     <router-link to="/" class="header__logo">Star Worst</router-link>
     <nav class="header-nav">
       <router-link class="header-nav__link" to="/">Главная</router-link>
+      <router-link class="header-nav__link" to="/market">Базар</router-link>
       <router-link v-if="login" class="header-nav__link" to="/profile">Профиль</router-link>
       <router-link v-else class="header-nav__link" to="/login">Присоединиться</router-link>
       <button v-if="login" @click="redirect" class="header-nav__link">Выйти</button>

@@ -29,12 +29,16 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+
 import { tryToLogIn } from "@/services/api/connections";
+import notificationsMixin from '@/mixins/notifications.mixin'
+
 export default {
   data: () => ({
     email: "",
     pass: "",
   }),
+  mixins: [notificationsMixin],
   computed: {
     ...mapGetters({ active: "getActive" }),
   },
@@ -70,16 +74,7 @@ export default {
             e.response.data.message
           );
         });
-    },
-    openNotification(position = null, color, title, text) {
-      const noti = this.$vs.notification({
-        progress: "auto",
-        color,
-        position,
-        title,
-        text,
-      });
-    },
+    }
   },
 };
 </script>

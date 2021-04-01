@@ -5,7 +5,8 @@ Vue.use(Vuex)
 
 import user from './user'
 import classState from './classState'
+import units from './units'
 
 export default new Vuex.Store({
-  modules: { user, classState }
+  modules: { user, classState, units }
 })

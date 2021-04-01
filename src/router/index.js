@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Home from '../views/Home.vue'
-import Login from '../views/Login.vue'
-import Profile from '../views/Profile.vue'
+import Home from '../views/Home'
+import Login from '../views/Login'
+import Profile from '../views/Profile'
+import Market from '../views/Market'
 
 import guest from './midleware/guest'
 import auth from './midleware/auth'
@@ -21,6 +22,12 @@ const routes = [
 
   },
   {
+    path: '/market',
+    name: 'market',
+    component: Market,
+
+  },
+  {
     path: '/login',
     name: 'login',
     component: Login,
@@ -35,7 +42,6 @@ const routes = [
     meta: {
       middleware: [auth]
     }
-
   }
 ]
 
