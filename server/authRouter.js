@@ -13,7 +13,7 @@ router.post('/signup',
     check('password', 'password must be from 7 chars').isLength({ min: 7, max: 150 })
     ], authController.registration)
 router.post('/login', authController.login)
-router.post('/units', authController.getUnits)
+router.get('/units', authController.getUnits)
 router.get('/user', authMiddleware, authController.getUser)
 router.get('/admin', roleMiddleware(['ADMIN']), authController.adminTest)
 

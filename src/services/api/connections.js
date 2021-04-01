@@ -12,5 +12,10 @@ export function tryToLogIn(data) {
 
 export function getUserInfo() {
   return api()
-    .get("api/user", data)
+    .get("api/user")
+}
+
+export function getUnits() {
+  return api()
+    .get("api/units")
 }

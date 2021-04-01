@@ -54,8 +54,8 @@ export default {
             this.openNotification(
               "bottom-right",
               "rgb(222, 212, 21)",
-              "ok  !",
-              "велком епта!"
+              "Привет",
+              "проходи"
             );
             window.localStorage.setItem("token", res.data.token);
             this.loginAction();
