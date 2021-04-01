@@ -1,7 +1,7 @@
 /* schemas */
-const User = require('./schemas/User')
-const Role = require('./schemas/Role')
-const Unit = require('./schemas/Unit')
+const User = require('../schemas/User')
+const Role = require('../schemas/Role')
+const Unit = require('../schemas/Unit')
 const bcrypt = require('bcryptjs')
 const { validationResult } = require('express-validator')
 const jwt = require('jsonwebtoken')
@@ -65,30 +65,16 @@ class authController {
     async getUser(req, res) {
         try {
             const currentUser = req.user
-            const user = await User.findOne({ _id: currentUser.id })
-            return res.json(user)
+            let { achieves, storage, bitcoin, capital, email, name, createdAt } = await User.findOne({ _id: currentUser.id })
+          
+            return res.json({ achieves, storage, bitcoin, capital, email, name, createdAt })
         }
         catch (e) {
             return res.status(400).json({ message: 'get users error ' })
         }
     }
-    async adminTest(req, res) {
-        try {
-            return res.json({ admin: true })
-        } catch (e) {
-            return res.status(400).json({ message: 'admin check error ' })
 
-        }
-    }
-    async getUnits(req, res) {
-        try {
-            const units = await Unit.find()
-            return res.json(units)
-        } catch (e) {
-            return res.status(400).json({ message: 'getting units error ' })
 
-        }
-    }
 }
 
 module.exports = new authController()

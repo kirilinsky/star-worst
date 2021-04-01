@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const express = require('express');
-const authRouter = require('./authRouter')
+const authRouter = require('./routes/authRouter')
+const unitsRouter = require('./routes/unitsRouter')
 const chalk = require('chalk');
 const cors = require('cors');
 require('dotenv').config();
@@ -18,6 +19,7 @@ var corsOptions = {
 app.use(express.json())
 app.use(cors(corsOptions));
 app.use('/api', authRouter);
+app.use('/units', unitsRouter);
 
 const dbRoute = `mongodb+srv://admin:${envPASS}@cluster0.dfx9g.mongodb.net/sworst?retryWrites=true&w=majority`
 mongoose.set('useUnifiedTopology', true)

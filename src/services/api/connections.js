@@ -17,5 +17,12 @@ export function getUserInfo() {
 
 export function getUnits() {
   return api()
-    .get("api/units")
+    .get("units/getAll")
+}
+ 
+
+
+export function buyUnit(id, token) {
+  return api()
+    .post("units/getAll", { id }, { headers: { "Authorization": `Bearer ${token}` } })
 }
