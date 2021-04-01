@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Header />
+    <StatusBar v-if="login" />
     <div class="container">
       <router-view class="main"/>
     </div>
@@ -10,10 +11,15 @@
 
 <script>
 import Header from '@/components/Header'
+import StatusBar from '@/components/StatusBar'
 import Footer from '@/components/Footer'
+import { mapGetters } from 'vuex'
 
 export default {
-  components: { Header, Footer }
+  components: { Header, StatusBar, Footer },
+  computed: {
+    ...mapGetters({ login: "getUserLogged" })
+  }
 }
 </script>
 
@@ -28,6 +34,7 @@ export default {
 
 .main {
   flex: 1 0 auto;
+  margin: 50px;
 }
 
 </style>
