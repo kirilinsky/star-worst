@@ -1,0 +1,13 @@
+.status-bar {
+  &-user {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &__bill {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 15%;
+    }
+  }
+}

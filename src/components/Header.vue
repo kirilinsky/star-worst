@@ -6,7 +6,7 @@
       <router-link class="header-nav__link" to="/market">Базар</router-link>
       <router-link v-if="login" class="header-nav__link" to="/profile">Профиль</router-link>
       <router-link v-else class="header-nav__link" to="/login">Присоединиться</router-link>
-      <button v-if="login" @click="redirect" class="header-nav__link">Выйти</button>
+      <button v-if="login" @click="logout" class="header-nav__link">Выйти</button>
     </nav>
   </header>
 </template>
@@ -21,6 +21,11 @@ export default {
       this.loginAction();
       this.$router.push("/login");
     },
+    logout() {
+      localStorage.clear()
+      this.loginAction()
+      this.$router.push('/')
+    }
   },
   computed: {
     ...mapGetters({ login: "getUserLogged" }),

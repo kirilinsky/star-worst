@@ -24,6 +24,8 @@
 import { mapGetters, mapActions } from 'vuex'
 
 import { tryToSignIn } from '@/services/api/connections'
+import notificationsMixin from '@/mixins/notifications.mixin'
+
 
 export default {
   data: () => ({ 
@@ -31,6 +33,7 @@ export default {
     email: '',
     pass: ''
   }),
+  mixins: [notificationsMixin],
   computed: {
     ...mapGetters({ active: 'getActive' })
   },
@@ -39,15 +42,6 @@ export default {
     redirect() {
       this.loginAction();
       this.$router.push('/profile')
-    },
-    openNotification(position = null, color, title, text) {
-      const noti = this.$vs.notification({
-        progress: 'auto',
-        color,
-        position,
-        title,
-        text
-      })
     },
     setNewUser() {
       const userData = {

@@ -62,6 +62,7 @@ export default {
               "проходи"
             );
             window.localStorage.setItem("token", res.data.token);
+            window.localStorage.setItem("session", true);
             this.loginAction();
             this.$router.push("/profile");
           }

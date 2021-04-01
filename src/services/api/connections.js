@@ -10,19 +10,18 @@ export function tryToLogIn(data) {
     .post("api/login", data)
 }
 
-export function getUserInfo() {
+export function getUserInfo(token) {
   return api()
-    .get("api/user")
+    .get("api/user", { headers: { "Authorization": `Bearer ${token}` } })
 }
 
 export function getUnits() {
   return api()
     .get("units/getAll")
 }
- 
 
 
 export function buyUnit(id, token) {
   return api()
-    .post("units/getAll", { id }, { headers: { "Authorization": `Bearer ${token}` } })
+    .post("units/buy", { id }, { headers: { "Authorization": `Bearer ${token}` } })
 }

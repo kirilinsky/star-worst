@@ -30,7 +30,6 @@ export default {
           commit('setErrorLoading', true)
         })
         .finally(() => commit('setUnitsLoading', false))
-
     },
     setUnitsLoading({ commit }, payload) {
       commit('setUnitsLoading', payload)

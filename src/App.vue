@@ -34,7 +34,7 @@ export default {
 
 .main {
   flex: 1 0 auto;
-  margin: 50px;
+  margin: 128px 0px 50px 0px;
 }
 
 </style>
