@@ -20,7 +20,7 @@
       <vs-button
         class="button login__button"
         transparent
-        v-if="!login"
+        v-if="login"
         :active="active == 0"
       >
         Купить бойца
