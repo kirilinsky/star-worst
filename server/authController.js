@@ -82,7 +82,7 @@ class authController {
     }
     async getUnits(req, res) {
         try {
-            return Unit.find()
+            return res.json(Unit.find())
         } catch (e) {
             return res.status(400).json({ message: 'getting units error ' })
 
