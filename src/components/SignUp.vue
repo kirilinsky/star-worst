@@ -55,7 +55,7 @@ export default {
               "bottom-right",
               "rgb(222, 212, 21)",
               "ok  !",
-              "yjhvccf!"
+              "велком епта!"
             );
             window.localStorage.setItem("token", res.data.token);
             this.loginAction();
