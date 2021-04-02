@@ -17,6 +17,17 @@ class unitsController {
 
         }
     }
+    /* one */
+    async getUnit(req, res) {
+        try {
+            const { id: _id } = req.body
+            const unit = await Unit.findOne({ _id })
+            return res.json(unit)
+        } catch (e) {
+            return res.status(400).json({ message: 'getting unit  error ' })
+
+        }
+    }
     async buyUnit(req, res) {
         try {
             const { id: unitId } = req.body

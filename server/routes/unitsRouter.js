@@ -8,6 +8,7 @@ const authMiddleware = require('../authMiddleware')
 
 
 router.get('/getAll', unitsController.getUnits)
+router.post('/get', unitsController.getUnit)
 router.post('/buy', authMiddleware, unitsController.buyUnit)
 router.post('/sell', authMiddleware, unitsController.sellUnit)
 

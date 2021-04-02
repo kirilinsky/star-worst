@@ -1,9 +1,9 @@
 <template>
-  <div class="storage-profile">
+  <div class="storage ">
     <h2>storage:</h2>
-    <div v-for="unit in units" :key="unit.id" class="storage-profile-gallery">
-      <Item :unit="unit" />
-    </div>
+   <vs-card-group>
+      <Item :unit="unit" v-for="unit in units" :key="unit.id" />
+  </vs-card-group>
   </div>
 </template>
 
@@ -35,3 +35,11 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.storage {
+}
+.gallery {
+  display: flex;
+}
+</style>
