@@ -22,9 +22,7 @@ app.use('/api', authRouter);
 app.use('/units', unitsRouter);
 
 const dbRoute = `mongodb+srv://admin:${envPASS}@cluster0.dfx9g.mongodb.net/sworst?retryWrites=true&w=majority`
-mongoose.set('useUnifiedTopology', true)
-mongoose.set('useFindAndModify', false);
-mongoose.set('useCreateIndex', true);
+
 /* let x = new Perk()
 x.name = "Дерябнуть"
 x.img = 'https://alex-webstart.xyz/sworst/perks/vodka.png'
@@ -37,7 +35,10 @@ x.save() */
 const start = async () => {
     try {
         mongoose.connect(dbRoute, {
-            useNewUrlParser: true
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            useFindAndModify: false,
+            useCreateIndex: true
         });
         let db = mongoose.connection;
         db.once('open', () => log(chalk.green('connected to the database')));
