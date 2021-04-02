@@ -25,3 +25,9 @@ export function buyUnit(id, token) {
   return api()
     .post("units/buy", { id }, { headers: { "Authorization": `Bearer ${token}` } })
 }
+
+
+export function sellUnit(id, token) {
+  return api()
+    .post("units/sell", { id }, { headers: { "Authorization": `Bearer ${token}` } })
+}

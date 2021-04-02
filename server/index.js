@@ -5,7 +5,7 @@ const unitsRouter = require('./routes/unitsRouter')
 const chalk = require('chalk');
 const cors = require('cors');
 require('dotenv').config();
-
+const Perk = require('./schemas/Perk.js')
 const log = console.log;
 
 const PORT = process.env.PORT || 8097;
@@ -25,8 +25,15 @@ const dbRoute = `mongodb+srv://admin:${envPASS}@cluster0.dfx9g.mongodb.net/swors
 mongoose.set('useUnifiedTopology', true)
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
-
-
+/* let x = new Perk()
+x.name = "Дерябнуть"
+x.img = 'https://alex-webstart.xyz/sworst/perks/vodka.png'
+x.host = '60632a2f6db168f57ca63ac2'
+x.damageMultiplier = 1
+x.price = 2
+x.healthMultiplier = 1.5
+x.description = 'Эликсир'
+x.save() */
 const start = async () => {
     try {
         mongoose.connect(dbRoute, {

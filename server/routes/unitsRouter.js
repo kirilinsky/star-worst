@@ -9,6 +9,7 @@ const authMiddleware = require('../authMiddleware')
 
 router.get('/getAll', unitsController.getUnits)
 router.post('/buy', authMiddleware, unitsController.buyUnit)
+router.post('/sell', authMiddleware, unitsController.sellUnit)
 
 
 module.exports = router

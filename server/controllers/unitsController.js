@@ -22,7 +22,7 @@ class unitsController {
             const { id: unitId } = req.body
             const { id: userId } = req.user
             const { bitcoin, storage } = await User.findOne({ _id: userId })
-            const { price } = await Unit.findOne({ _id: unitId })
+            const { price, soldCount } = await Unit.findOne({ _id: unitId })
             if (storage.some(x => x.id === unitId)) {
                 return res.status(400).json({ message: 'уже есть такой' })
             }
@@ -31,9 +31,14 @@ class unitsController {
             }
 
             const rest = bitcoin - price
-            const newStorage = [...storage, { id: unitId, perks: [], damageMultiplier: 0, healthMultiplier: 0 }]
-            
-            User.findByIdAndUpdate({ _id: userId }, { bitcoin: rest, storage: newStorage }, { new: true }, (err, model) => {
+
+            Unit.findByIdAndUpdate({ _id: unitId }, { soldCount: soldCount + 1 }, { new: true }, (err, model) => {
+                if (err) {
+                    console.log(err);
+                }
+
+            })
+            User.findByIdAndUpdate({ _id: userId }, { bitcoin: rest, storage: [...storage, { id: unitId, perks: [], damageMultiplier: 0, healthMultiplier: 0 }] }, { new: true }, (err, model) => {
                 if (err) {
                     return res.status(400).json({ message: 'buy units error ' })
                 }
@@ -42,8 +47,31 @@ class unitsController {
 
 
 
+
+
         } catch (e) {
+            console.log(e);
             return res.status(400).json({ message: 'buy units error ' })
+        }
+    }
+    /* sell */
+    async sellUnit(req, res) {
+        try {
+            const { id: unitId } = req.body
+            const { id: userId } = req.user
+            const { bitcoin, storage } = await User.findOne({ _id: userId })
+            const { price } = await Unit.findOne({ _id: unitId })
+            let percent = Math.floor((price / 100) * 30)
+            let rest = bitcoin + percent
+
+            User.findByIdAndUpdate({ _id: userId }, { bitcoin: rest, storage: storage.filter(x => x.id !== unitId) }, { new: true }, (err, model) => {
+                if (err) {
+                    return res.status(400).json({ message: 'sell unit  error ' })
+                }
+                return res.json({ message: `Ты продал юнита за ${percent}.btc` })
+            })
+        } catch (e) {
+            return res.status(400).json({ message: 'sell unit  error ' })
         }
     }
 }
