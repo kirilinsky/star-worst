@@ -14,7 +14,7 @@
           alt="Иконка: урон"
         />
         <span class="item-info__text"
-          >Урон: {{ baseUnit.damage * unit.damageMultiplier }} ({{
+          >Урон: {{ (baseUnit.damage * unit.damageMultiplier).toFixed(2) }} ({{
             unit.damageMultiplier
           }})</span
         >
@@ -27,7 +27,8 @@
           alt="Иконка: здоровье"
         />
         <span class="item-info__text"
-          >Здоровье: {{ baseUnit.health * unit.healthMultiplier }} ({{
+          >Здоровье:
+          {{ (baseUnit.health * unit.healthMultiplier).toFixed(2) }} ({{
             unit.healthMultiplier
           }})</span
         >
