@@ -2,10 +2,11 @@ const mongoose = require('mongoose');
 const express = require('express');
 const authRouter = require('./routes/authRouter')
 const unitsRouter = require('./routes/unitsRouter')
+const userRouter = require('./routes/userRouter')
+const perksRouter = require('./routes/perksRouter')
 const chalk = require('chalk');
 const cors = require('cors');
 require('dotenv').config();
-const Perk = require('./schemas/Perk.js')
 const log = console.log;
 
 const PORT = process.env.PORT || 8097;
@@ -20,18 +21,12 @@ app.use(express.json())
 app.use(cors(corsOptions));
 app.use('/api', authRouter);
 app.use('/units', unitsRouter);
+app.use('/user', userRouter);
+app.use('/perks', perksRouter);
 
 const dbRoute = `mongodb+srv://admin:${envPASS}@cluster0.dfx9g.mongodb.net/sworst?retryWrites=true&w=majority`
 
-/* let x = new Perk()
-x.name = "Дерябнуть"
-x.img = 'https://alex-webstart.xyz/sworst/perks/vodka.png'
-x.host = '60632a2f6db168f57ca63ac2'
-x.damageMultiplier = 1
-x.price = 2
-x.healthMultiplier = 1.5
-x.description = 'Эликсир'
-x.save() */
+
 const start = async () => {
     try {
         mongoose.connect(dbRoute, {

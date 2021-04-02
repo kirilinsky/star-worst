@@ -12,7 +12,7 @@ export function tryToLogIn(data) {
 
 export function getUserInfo(token) {
   return api()
-    .get("api/user", { headers: { "Authorization": `Bearer ${token}` } })
+    .get("user/get", { headers: { "Authorization": `Bearer ${token}` } })
 }
 
 export function getUnits() {
@@ -36,4 +36,12 @@ export function buyUnit(id, token) {
 export function sellUnit(id, token) {
   return api()
     .post("units/sell", { id }, { headers: { "Authorization": `Bearer ${token}` } })
+}
+
+
+
+/* get all perks without auth middleware*/
+export function getAllPerks() {
+  return api()
+    .get("perks/getAll")
 }

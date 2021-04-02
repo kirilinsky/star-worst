@@ -5,7 +5,7 @@ const Unit = require('../schemas/Unit')
 
 
 
-class unitsController {
+class userController {
 
 
     async getUnits(req, res) {
@@ -87,4 +87,4 @@ class unitsController {
     }
 }
 
-module.exports = new unitsController()
+module.exports = new userController()
