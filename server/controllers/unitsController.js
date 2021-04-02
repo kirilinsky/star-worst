@@ -49,7 +49,7 @@ class userController {
                 }
 
             })
-            User.findByIdAndUpdate({ _id: userId }, { bitcoin: rest, storage: [...storage, { id: unitId, perks: [], damageMultiplier: 0, healthMultiplier: 0 }] }, { new: true }, (err, model) => {
+            User.findByIdAndUpdate({ _id: userId }, { bitcoin: rest, storage: [...storage, { id: unitId, perks: [], damageMultiplier: 1, healthMultiplier: 1 }] }, { new: true }, (err, model) => {
                 if (err) {
                     return res.status(400).json({ message: 'buy units error ' })
                 }

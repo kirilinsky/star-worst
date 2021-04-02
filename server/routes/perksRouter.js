@@ -7,7 +7,7 @@ const authMiddleware = require('../authMiddleware')
 /* routes */
 
 
-router.get('/getAll', authMiddleware, perksController.getAllPerksByUnitId)
-
+router.post('/getAll', perksController.getAllPerksByUnitId)
+router.post('/buy', authMiddleware, perksController.buyPerk)
 
 module.exports = router

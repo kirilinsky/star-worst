@@ -45,3 +45,8 @@ export function getAllPerks(id) {
   return api()
     .post("perks/getAll", { id })
 }
+
+export function buyPerk(unitId, perkId, token) {
+  return api()
+    .post("perks/buy", { unitId, perkId }, { headers: { "Authorization": `Bearer ${token}` } })
+}

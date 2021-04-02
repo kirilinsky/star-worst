@@ -1,11 +1,11 @@
 <template>
   <div class="item">
-    <img class="item__image" :src="baseUnit.img" :alt="baseUnit.name">
+    <img class="item__image" :src="baseUnit.img" :alt="baseUnit.name" />
     <h3 class="item__name">{{ baseUnit.name }}</h3>
     <button @click="tryToSellUnit(unit.id)" title="Продать" class="item-sell">
       &times;
     </button>
-    
+
     <div class="item-info">
       <div class="item-info__block">
         <img
@@ -13,7 +13,11 @@
           src="@/assets/icons/damage.svg"
           alt="Иконка: урон"
         />
-        <span class="item-info__text">Урон: {{ baseUnit.damage }}</span>
+        <span class="item-info__text"
+          >Урон: {{ baseUnit.damage * unit.damageMultiplier }} ({{
+            unit.damageMultiplier
+          }})</span
+        >
       </div>
 
       <div class="item-info__block">
@@ -22,12 +26,15 @@
           src="@/assets/icons/full-hp.svg"
           alt="Иконка: здоровье"
         />
-        <span class="item-info__text">Здоровье: {{ baseUnit.health }}</span>
+        <span class="item-info__text"
+          >Здоровье: {{ baseUnit.health * unit.healthMultiplier }} ({{
+            unit.healthMultiplier
+          }})</span
+        >
       </div>
     </div>
 
     <router-link :to="/unit/ + baseUnit._id">Подробнее</router-link>
-
   </div>
 </template>
 
@@ -65,11 +72,13 @@ export default {
             "Ошибка продажи!",
             err.response.data.message
           )
-        )
+        );
     },
   },
   created() {
-    getUnit(this.unit.id).then(x => { this.baseUnit = x.data })
+    getUnit(this.unit.id).then((x) => {
+      this.baseUnit = x.data;
+    });
   },
 };
 </script>
