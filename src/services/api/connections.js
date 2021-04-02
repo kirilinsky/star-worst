@@ -41,7 +41,7 @@ export function sellUnit(id, token) {
 
 
 /* get all perks without auth middleware*/
-export function getAllPerks() {
+export function getAllPerks(id) {
   return api()
-    .get("perks/getAll")
+    .post("perks/getAll", { id })
 }

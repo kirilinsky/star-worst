@@ -4,10 +4,13 @@ const Perk = require('../schemas/Perk')
 
 
 class perksController {
-    async getAllPerks(req, res) {
+    async getAllPerksByUnitId(req, res) {
         try {
-
-            let perks = await Perk.find()
+            let { id: host } = req.body
+            if (!host) {
+                return res.status(400).json({ message: 'there is no unit id ' })
+            }
+            let perks = await Perk.find({ host })
 
             return res.json(perks)
         }

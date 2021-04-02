@@ -7,7 +7,7 @@ const authMiddleware = require('../authMiddleware')
 /* routes */
 
 
-router.get('/getAll', authMiddleware, perksController.getAllPerks)
+router.get('/getAll', authMiddleware, perksController.getAllPerksByUnitId)
 
 
 module.exports = router
