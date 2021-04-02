@@ -1,7 +1,6 @@
 <template>
-  <div class="about">
-    <h1>Your Profile</h1>
-    {{ userInfo.name }}
+  <div class="profile">
+    <h1 class="title">Профиль: {{ userInfo.name }}</h1>
     <Storage :units="userInfo.storage" />
   </div>
 </template>

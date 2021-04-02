@@ -5,6 +5,7 @@ import Home from '../views/Home'
 import Login from '../views/Login'
 import Profile from '../views/Profile'
 import Market from '../views/Market'
+import Unit from '../views/Unit'
 
 import guest from './midleware/guest'
 import auth from './midleware/auth'
@@ -25,6 +26,12 @@ const routes = [
     path: '/market',
     name: 'market',
     component: Market,
+
+  },
+  {
+    path: '/unit/:id',
+    name: 'unit',
+    component: Unit,
 
   },
   {

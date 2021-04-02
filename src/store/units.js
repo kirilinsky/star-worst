@@ -40,6 +40,7 @@ export default {
   },
   getters: {
     getUnits: state => state.units,
-    getUnitsLoading: state => state.unitsLoading
+    getUnitsLoading: state => state.unitsLoading,
+    getUnitsId: state => id => state.units.find(unit => unit.id === id)
   }
 }

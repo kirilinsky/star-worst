@@ -1,9 +1,33 @@
 <template>
   <div class="item">
-    {{ baseUnit.name }}
-    <button @click="tryToSellUnit(unit.id)" title="продать" class="item-sell">
+    <img class="item__image" :src="baseUnit.img" :alt="baseUnit.name">
+    <h3 class="item__name">{{ baseUnit.name }}</h3>
+    <button @click="tryToSellUnit(unit.id)" title="Продать" class="item-sell">
       &times;
     </button>
+    
+    <div class="item-info">
+      <div class="item-info__block">
+        <img
+          class="item-info__image"
+          src="@/assets/icons/damage.svg"
+          alt="Иконка: урон"
+        />
+        <span class="item-info__text">Урон: {{ baseUnit.damage }}</span>
+      </div>
+
+      <div class="item-info__block">
+        <img
+          class="item-info__image"
+          src="@/assets/icons/full-hp.svg"
+          alt="Иконка: здоровье"
+        />
+        <span class="item-info__text">Здоровье: {{ baseUnit.health }}</span>
+      </div>
+    </div>
+
+    <router-link :to="/unit/ + baseUnit._id">Подробнее</router-link>
+
   </div>
 </template>
 
@@ -41,35 +65,11 @@ export default {
             "Ошибка продажи!",
             err.response.data.message
           )
-        );
+        )
     },
   },
   created() {
-    getUnit(this.unit.id).then((x) => {
-      this.baseUnit = x.data;
-    });
+    getUnit(this.unit.id).then(x => { this.baseUnit = x.data })
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.item {
-  width: 460px;
-  background: #ccc;
-  margin: 3px;
-  padding: 11px;
-  position: relative;
-  &-sell {
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    top: 5px;
-    right: 3px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    background: transparent;
-  }
-}
-</style>
