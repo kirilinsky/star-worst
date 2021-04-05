@@ -24,7 +24,7 @@ export function getUnits() {
 
 export function getUnit(id) {
   return api()
-    .post("units/get", { id })
+    .get(`units/get/${id}` )
 }
 
 export function buyUnit(id, token) {
@@ -43,7 +43,7 @@ export function sellUnit(id, token) {
 /* get all perks without auth middleware*/
 export function getAllPerks(id) {
   return api()
-    .post("perks/getAll", { id })
+    .get(`perks/getAll/${id}`)
 }
 
 export function buyPerk(unitId, perkId, token) {

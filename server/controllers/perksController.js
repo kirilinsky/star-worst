@@ -7,7 +7,7 @@ const User = require('../schemas/User')
 class perksController {
     async getAllPerksByUnitId(req, res) {
         try {
-            let { id: host } = req.body
+            let { id: host } = req.params
             if (!host) {
                 return res.status(400).json({ message: 'there is no unit id ' })
             }
@@ -30,7 +30,7 @@ class perksController {
             if (currentUnitInStorage.perks.some(x => x === _id)) {
                 return res.status(400).json({ message: 'уже приобретен' })
             }
-            if (price > capital) { 
+            if (price > capital) {
                 return res.status(400).json({ message: 'губу закатай' })
             }
 
@@ -49,7 +49,7 @@ class perksController {
                     return res.status(400).json({ message: 'ошибка' })
                 }
                 return res.json({ message: `Ура, купили. Остаток баланса:${model.capital}.kpm` })
-              
+
 
             })
 

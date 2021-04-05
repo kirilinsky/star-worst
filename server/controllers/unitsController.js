@@ -20,7 +20,7 @@ class userController {
     /* one */
     async getUnit(req, res) {
         try {
-            const { id: _id } = req.body
+            const { id: _id } = req.params
             const unit = await Unit.findOne({ _id })
             return res.json(unit)
         } catch (e) {
